@@ -1,6 +1,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 from statsmodels.tsa.seasonal import seasonal_decompose
+from statsmodels.tsa.stattools import adfuller
 
 from .indicators import Indicators
 
@@ -77,3 +78,9 @@ class TechnicalIndicators(Indicators):
         plt.plot(resid)
         plt.grid(color='r', linestyle='--', linewidth=1, alpha=0.3)
         plt.show()
+
+    def adfuller_test(self):
+        AdStatistic, alpha = adfuller(self.df)[:2]
+        return (AdStatistic, alpha)
+
+        
